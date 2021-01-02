@@ -7,3 +7,5 @@ googleCrawling 함수에 parameter로서 아래와 같은 parameter들이 필요
 3. 하위 directory 이름
 
 ex) googleCrawling(키워드목록, 상위 directory 이름, 하위 directory 이름)
+
+> python google_crawler.py
