@@ -26,8 +26,8 @@ def googleCrawling(searchingList, gender, entertainment):
         scrollCnt = 0
         
         while True:
-            print(keyword, scrollCnt)
-            if scrollCnt == 25:
+            print(keyword, scrollCnt, '스크롤중...')
+            if scrollCnt == 10:
                 break
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(SCROLL_PAUSE_SEC)
@@ -41,6 +41,9 @@ def googleCrawling(searchingList, gender, entertainment):
 
         imagesList = driver.find_elements_by_css_selector(".rg_i.Q4LuWd")
         for idx, image in enumerate(imagesList):
+            print(f'{keyword} {idx} 다운로드 중...')
+            if idx > 100:
+                break
             imageURL = image.get_attribute('src')
             if imageURL:  
                 directory = f'./images/{entertainment}/{gender}/{keyword}'
@@ -51,7 +54,7 @@ def googleCrawling(searchingList, gender, entertainment):
     
 
 smManList = [
-"엑소 수호", "엑소 카이", "엑소 시우민", "엑소 백현", "엑소 찬열", "엑소 첸," "엑소 레이", "엑소 디오", "엑소 세훈",
+"엑소 수호", "엑소 카이", "엑소 시우민", "엑소 백현", "엑소 찬열", "엑소 첸", "엑소 레이", "엑소 디오", "엑소 세훈",
 "유노윤호", "최강창민", 
 "슈퍼주니어 이특", "슈퍼주니어 희철", "슈퍼주니어 예성", "슈퍼주니어 신동", "슈퍼주니어 성민", "슈퍼주니어 은혁", "슈퍼주니어 동해", "슈퍼주니어 시원", "슈퍼주니어 려욱", "슈퍼주니어 규현",
 "샤이니 민호", "샤이니 온유", "샤이니 Key", "샤이니 태민",
@@ -83,19 +86,16 @@ ygManList = [
     "빅뱅 지드래곤", "빅뱅 탑", "빅뱅 태양", "빅뱅 대성",
     "위너 송민호", "위너 김진우", "위너 강승윤", "위너 이승훈",
     "아이콘 김진환", "아이콘 송윤형", "아이콘 BOBBY", "아이콘 김동혁", "아이콘 구준회", "아이콘 정찬우",
-    "트레져 방예담", "트레져 윤재혁", "트레져 하루토", "트레져 소정환", "트레져 준규", "트레져 박정우", "트레져 최현석", "트레져 마시호", "트레져 도영", "트레져 요시", "트레져 지훈", "트레져 아사히"
-]
-
-ygWomenList = [
-    "블랙핑크 지수", "블랙핑크 제니", "블랙핑크 로제", "블랙핑크 리사"
+    "트레저 방예담", "트레저 윤재혁", "트레저 하루토", "트레저 소정환", "트레저 준규", "트레저 박정우", "트레저 최현석", "트레저 마시호", "트레저 도영", "트레저 요시", "트레저 지훈", "트레저 아사히"
 ]
 
 
 googleCrawling(smManList, "men", "sm")
 googleCrawling(smWomenList, "women", "sm")
 
-googleCrawling(jypManList, "men", "sm")
-googleCrawling(jypWomenList, "women", "sm")
+googleCrawling(jypManList, "men", "jyp")
+googleCrawling(jypWomenList, "women", "jyp")
 
-googleCrawling(ygManList, "men", "sm")
-googleCrawling(ygWomenList, "women", "sm")
+googleCrawling(ygManList, "men", "yg")
+googleCrawling(ygWomenList, "women", "yg")
+
